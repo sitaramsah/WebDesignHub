@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .question-container { margin-top: 20px; }
+        .question { font-size: 1.2em; }
+        .quiz-header { text-align: center; margin-top: 30px; }
+        .navbar-nav .nav-link {
+     background-color: #007bff;
+     color: white !important;
+     padding: 10px 15px;
+     border-radius: 5px;
+     margin: 5px;
+     transition: 0.3s;
+     font-weight: bold;
+ }
+ 
+ .navbar-nav .nav-link:hover {
+     background-color: #0056b3;
+     transform: scale(1.05);
+ }
+ 
+ /* Highlight Active Section */
+ .navbar-nav .nav-item .nav-link.active {
+     background-color: #0056b3;
+     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+ }
+ .form-control {
+     border: 1px solid #007bff;
+     padding: 12px;
+     border-radius: 5px;
+ }
+ 
+ .form-control:focus {
+     border-color: #0056b3;
+     box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
+ }
+ 
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-book me-2"></i> Study Resource Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-4" role="search">
+                    <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="study.html">Home</a></li>
+
+                    <!-- Dropdown for Subjects -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSubjects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Subjects
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownSubjects">
+                            <li><a class="dropdown-item" href="maths.html">Mathematics</a></li>
+                            <li><a class="dropdown-item" href="science.html">Science</a></li>
+                            <li><a class="dropdown-item" href="english.html">English</a></li>
+                            <li><a class="dropdown-item" href="computer.html">Computer Science</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dropdown for Notes & Quizzes -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNotes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Notes & Quizzes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownNotes">
+                            <li><a class="dropdown-item" href="notes.html">Download Notes</a></li>
+                            <li><a class="dropdown-item" href="take.html">Take a Quiz</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="#forum">Forum</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="quiz-header mt-5 pt-5">
+        <h1>Science Quiz</h1>
+        <p>Test your science knowledge!</p>
+    </div>
+    <form id="quiz-form" class="container">
+        <div id="quiz-questions"></div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit Answers</button>
+        </div>
+    </form>
+    <script>
+        const questions = [
+            { q: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Pb", "Fe"], answer: "Au" },
+            { q: "What planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], answer: "Mars" },
+            { q: "What gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" },
+            { q: "What is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"], answer: "Mitochondria" },
+            { q: "What is H2O more commonly known as?", options: ["Oxygen", "Water", "Hydrogen Peroxide", "Helium"], answer: "Water" },
+            { q: "How many planets are in the Solar System?", options: ["7", "8", "9", "10"], answer: "8" },
+            { q: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Quartz"], answer: "Diamond" },
+            { q: "What is the largest organ in the human body?", options: ["Heart", "Liver", "Skin", "Brain"], answer: "Skin" },
+            { q: "What is the main gas found in Earth's atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"], answer: "Nitrogen" },
+            { q: "What force keeps planets in orbit around the sun?", options: ["Magnetism", "Gravity", "Friction", "Inertia"], answer: "Gravity" },
+            { q: "What is the unit of electrical resistance?", options: ["Watt", "Ohm", "Volt", "Ampere"], answer: "Ohm" },
+            { q: "What is the boiling point of water in Celsius?", options: ["100", "90", "80", "110"], answer: "100" },
+            { q: "Which part of the atom has a positive charge?", options: ["Electron", "Proton", "Neutron", "Nucleus"], answer: "Proton" },
+            { q: "Which planet has the most moons?", options: ["Earth", "Jupiter", "Saturn", "Mars"], answer: "Saturn" },
+            { q: "What type of energy is produced by moving water?", options: ["Nuclear", "Hydroelectric", "Solar", "Geothermal"], answer: "Hydroelectric" },
+            { q: "What is the most abundant element in the universe?", options: ["Oxygen", "Carbon", "Hydrogen", "Iron"], answer: "Hydrogen" },
+            { q: "How many bones are in the adult human body?", options: ["206", "150", "300", "180"], answer: "206" },
+            { q: "What part of the plant conducts photosynthesis?", options: ["Roots", "Stem", "Leaves", "Flowers"], answer: "Leaves" },
+            { q: "What is the nearest star to Earth?", options: ["Alpha Centauri", "Sirius", "Sun", "Polaris"], answer: "Sun" },
+            { q: "Which scientist developed the theory of relativity?", options: ["Newton", "Darwin", "Einstein", "Galileo"], answer: "Einstein" }
+        ];
+        
+        function loadQuestions() {
+            const quizContainer = document.getElementById("quiz-questions");
+            questions.forEach((item, index) => {
+                let questionHTML = `<div class="question-container">
+                    <p class="question">${index + 1}. ${item.q}</p>`;
+                item.options.forEach(option => {
+                    questionHTML += `<div class="form-check">
+                        <input type="radio" class="form-check-input" name="question${index + 1}" value="${option}">
+                        <label class="form-check-label">${option}</label>
+                    </div>`;
+                });
+                questionHTML += `</div>`;
+                quizContainer.innerHTML += questionHTML;
+            });
+        }
+        
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="question${index + 1}"]:checked`);
+                if (selected && selected.value === item.answer) {
+                    score++;
+                }
+            });
+            alert(`Your score: ${score} out of ${questions.length}`);
+        });
+        
+        loadQuestions();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
